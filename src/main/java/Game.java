@@ -6,7 +6,11 @@ public class Game {
         int matchedStrikes = getMatchedStrikes(guessNumber);
         int matchedBalls = getMatchedBalls(guessNumber);
 
-        return new GuessResult(matchedStrikes == 3, matchedStrikes, matchedBalls);
+        return new GuessResult(isSolved(matchedStrikes), matchedStrikes, matchedBalls);
+    }
+
+    private static boolean isSolved(int matchedStrikes) {
+        return matchedStrikes == 3;
     }
 
     public int getMatchedStrikes(String guessNumber) {

@@ -52,12 +52,21 @@ class GameTest {
     void returnSolvedResult2Strikes0Ball() {
         generateQuestion("814");
         assertMatchedNumber(game.guess("854"), false, 2, 0);
+
+        generateQuestion("173");
+        assertMatchedNumber(game.guess("973"), false, 2, 0);
+
+        generateQuestion("691");
+        assertMatchedNumber(game.guess("681"), false, 2, 0);
     }
 
     @Test
     void returnSolvedResult1Strike20Ball() {
         generateQuestion("814");
         assertMatchedNumber(game.guess("418"), false, 1, 2);
+
+        generateQuestion("198");
+        assertMatchedNumber(game.guess("918"), false, 1, 2);
     }
 
     private void generateQuestion(String questionNumber) {
