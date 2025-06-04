@@ -5,6 +5,10 @@ public class Game {
         assertIllegalArgument(guessNumber);
         if (guessNumber.equals(question)) {
             return new GuessResult(true, 3, 0);
+        } else if (guessNumber.charAt(0) == question.charAt(0)
+                && guessNumber.charAt(1) != question.charAt(1)
+                && guessNumber.charAt(2) == question.charAt(2)) {
+            return new GuessResult(false, 2, 0);
         } else {
             return new GuessResult(false, 0, 0);
         }
