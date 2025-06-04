@@ -3,19 +3,29 @@ public class Game {
 
     public GuessResult guess(String guessNumber) {
         assertIllegalArgument(guessNumber);
-        if (guessNumber.equals(question)) {
-            return new GuessResult(true, 3, 0);
-        } else if (guessNumber.charAt(0) == question.charAt(0)
-                && guessNumber.charAt(1) != question.charAt(1)
-                && guessNumber.charAt(2) == question.charAt(2)) {
-            return new GuessResult(false, 2, 0);
-        } else if (guessNumber.charAt(0) != question.charAt(0)
-                && guessNumber.charAt(1) == question.charAt(1)
-                && guessNumber.charAt(2) != question.charAt(2)) {
-            return new GuessResult(false, 1, 2);
-        } else {
-            return new GuessResult(false, 0, 0);
+        int matchedStrikes = getMatchedStrikes(guessNumber);
+        int matchedBalls = getMatchedBalls(guessNumber);
+
+        return new GuessResult(matchedStrikes == 3, matchedStrikes, matchedBalls);
+    }
+
+    public int getMatchedStrikes(String guessNumber) {
+        int ret = 0;
+        for (int i = 0; i < guessNumber.length(); i++) {
+            if (question.charAt(i) == guessNumber.charAt(i)) ret += 1;
         }
+        return ret;
+    }
+
+    public int getMatchedBalls(String guessNumber) {
+        int ret = 0;
+        for (int i = 0; i < guessNumber.length(); i++) {
+            for (int j = 0; j < guessNumber.length(); j++) {
+                if (i == j) continue;
+                if (guessNumber.charAt(i) == question.charAt(j)) ret += 1;
+            }
+        }
+        return ret;
     }
 
     private static void assertIllegalArgument(String guessNumber) {
