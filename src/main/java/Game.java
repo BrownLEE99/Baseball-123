@@ -1,4 +1,14 @@
 public class Game {
+    public String question;
+
+    public GuessResult guess(String guessNumber) {
+        assertIllegalArgument(guessNumber);
+        if (guessNumber.equals(question)) {
+            return new GuessResult(true, 3, 0);
+        } else {
+            return null;
+        }
+    }
 
     private static void assertIllegalArgument(String guessNumber) {
         if (guessNumber == null) {
@@ -22,9 +32,5 @@ public class Game {
         return guessNumber.charAt(0) == guessNumber.charAt(1)
                 || guessNumber.charAt(1) == guessNumber.charAt(2)
                 || guessNumber.charAt(2) == guessNumber.charAt(0);
-    }
-
-    public void guess(String guessNumber) {
-        assertIllegalArgument(guessNumber);
     }
 }
