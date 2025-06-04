@@ -61,7 +61,7 @@ class GameTest {
     }
 
     @Test
-    void returnSolvedResult1Strike20Ball() {
+    void returnSolvedResult1Strike2Balls() {
         generateQuestion("814");
         assertMatchedNumber(game.guess("418"), false, 1, 2);
 
